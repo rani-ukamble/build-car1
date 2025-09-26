@@ -1,0 +1,20 @@
+name: rani-ukamble-group/build_suzuki
+on:
+  push:
+  workflow_dispatch:
+concurrency:
+  group: "${{ github.ref }}"
+  cancel-in-progress: true
+jobs:
+  build_suzuki:
+    runs-on: ubuntu-latest
+    container:
+      image: alpine
+    timeout-minutes: 60
+    steps:
+    - uses: actions/checkout@v4.1.0
+      with:
+        fetch-depth: 20
+        lfs: true
+    - run: echo "building suzuki...."
+    - run: echo "done"
